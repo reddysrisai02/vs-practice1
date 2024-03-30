@@ -1,0 +1,40 @@
+import random
+
+def roll_dice(num_dice):
+    """Return a list of integers with length `num_dice`.
+
+    Each integer in the returned list is a random number between
+    1 and 6, inclusive.
+    """
+    roll_results = []
+    for _ in range(num_dice):
+        roll = random.randint(1, 6)
+        roll_results.append(roll)
+    return roll_results
+
+def get_user_input():
+    """Get and validate user's input for the number of dice to roll."""
+    while True:
+        num_dice_input = input("How many dice do you want to roll? [1-6] ")
+        try:
+            num_dice = int(num_dice_input)
+            if 1 <= num_dice <= 6:
+                return num_dice
+            else:
+                print("Please enter a number from 1 to 6.")
+        except ValueError:
+            print("Please enter a number from 1 to 6.")
+
+def print_dice_results(dice_results):
+    """Print the dice-rolling results in a user-friendly format."""
+    print("\nDice-rolling results:")
+    for idx, result in enumerate(dice_results, 1):
+        print(f"Die #{idx}: {result}")
+
+def main():
+    num_dice = get_user_input()
+    dice_results = roll_dice(num_dice)
+    print_dice_results(dice_results)
+
+if __name__ == "__main__":
+    main()
